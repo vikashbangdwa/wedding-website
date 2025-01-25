@@ -73,7 +73,7 @@
                 <div class="header-nav">
                     <nav>
                         <ul class="primary-nav">
-                            <li><a href="#intro">How we met</a></li>
+                            <li><a href="#intro">Equating to Love</a></li>
                             <li><a href="#events">Events</a></li>
                             <li><a href="#instagram">Instagram</a></li>
                             <li><a href="#eng-pics">Gallery</a></li>
@@ -81,7 +81,7 @@
                         </ul>
                         <ul class="member-actions">
                             <li><a href="#map" class="login">Venue</a></li>
-                            <li><a href="#rsvp" class="btn-white btn-small">RSVP</a></li>
+                            <li><a href="#wishes" class="btn-white btn-small">Wishes</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -102,15 +102,16 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-sm-4 hidden-xs"></div>
-            <div class="col-sm-4 hidden-xs text-center"><a href="#rsvp"
-                                                           class="btn btn-accent btn-large rsvp-btn">RSVP</a></div>
+            <div class="col-sm-4 hidden-xs text-center"><a href="#wishes"
+                                                           class="btn btn-accent btn-large rsvp-btn">Wishes</a></div>
             <div class="col-sm-4 hidden-xs"></div>
-        </div>
+        </div> -->
     </div>
     <div class="down-arrow floating-arrow"><a href="#invitation"><i class="fa fa-angle-down"></i></a></div>
 </section>
+
 
 <section id="invitation" class="section-padding">
     <div class="container">
@@ -118,31 +119,156 @@
             <div class="col-md-12 text-center">
                 <h4 style="font-size: 2.5em; font-weight: bold;">Sachin <span class="fa fa-heart pulse2"></span> Jyoti</h4>
                 <h3> Getting hitched</h3>
-                <p>The dates are 17<sup>th</sup> & 18<sup>th</sup> of February '25 and we would like you to be a part of
-                    it.</p>
+                <p>The dates are 17<sup>th</sup> & 18<sup>th</sup> of February '25 and we would like you to be a part of it.</p>
+                
+                <!-- Countdown Timer -->
+                <div id="countdown" class="countdown-timer">
+                    <div class="timer-box">
+                        <span id="days"></span>
+                        <p>Days</p>
+                    </div>
+                    <div class="timer-box">
+                        <span id="hours"></span>
+                        <p>Hours</p>
+                    </div>
+                    <div class="timer-box">
+                        <span id="minutes"></span>
+                        <p>Minutes</p>
+                    </div>
+                    <div class="timer-box">
+                        <span id="seconds"></span>
+                        <p>Seconds</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <style>
+        #countdown {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+
+        .timer-box {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 0 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90px; /* Reduced width */
+            height: 100px; /* Reduced height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .timer-box:hover {
+            transform: scale(1.1);
+        }
+
+        .timer-box span {
+            font-size: 3em; /* Reduced font size */
+            font-weight: 600;
+            color: #e74c3c;  /* Red color for timer numbers */
+            display: block;
+            margin-bottom: 5px; /* Space between number and label */
+        }
+
+        .timer-box p {
+            font-size: 1.1em;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .countdown-timer {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .timer-box {
+                width: 80px;
+                height: 90px;
+                margin-bottom: 15px;
+            }
+
+            .timer-box span {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+
+    <script>
+        // Set the date we're counting down to (18th February 2025, 8 PM)
+        const countdownDate = new Date("Feb 18, 2025 20:00:00").getTime();
+
+        // Update the countdown every 1 second
+        const countdownFunction = setInterval(function() {
+
+            // Get the current date and time
+            const now = new Date().getTime();
+
+            // Find the distance between now and the countdown date
+            const distance = countdownDate - now;
+
+            // Time calculations for days, hours, minutes, and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in the respective elements
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            // If the countdown is over, display a message
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "The day has arrived!";
+            }
+        }, 1000);
+    </script>
 </section>
+
+
 
 <section id="intro">
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h3 class="header">How we met</h3>
+                <h3 class="header">Equating to Love</h3>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3 hidden-sm hidden-xs"><img src="img/jyoti1.jpg" class="wp1"></div>
             <div class="col-md-6">
                 <p>
-                    Our love story began in the most unexpected of places—LinkedIn. What started as a simple connection 
-                    request quickly blossomed into meaningful conversations. We discovered that we shared not only professional 
-                    interests but also a passion for similar events and hobbies. As we exchanged messages about our favorite conferences, 
-                    workshops, and shared experiences, we realized how much we had in common. Our discussions flowed effortlessly, and what 
-                    began as a professional connection soon turned into something much deeper. Through countless late-night chats and shared 
-                    laughter, we found ourselves falling in love. Our journey from LinkedIn to a beautiful relationship has been nothing short of 
-                    magical, and we are excited to celebrate this next chapter together :)
+                    Our story began as a fleeting spark of connection swiftly blossomed into a garden of rich and 
+                    meaningful conversations. As we shared our favourite experiences, we realized how much we had 
+                    in common. Our discussions flowed effortlessly, and what began as a simple connection soon turned 
+                    into something much deeper. Through uncountable chats and shared laughter, we found ourselves as 
+                    the two variables - _S_ & _J_ of a perfect equation, with _S_ bringing _stability_ and _J_ bringing 
+                    _joy_ to create a harmonious solution. Our union is a beautiful formula of values lying in the 
+                    intersection of respect, trust, and an unwavering support for one another, where every challenge 
+                    is met with collaboration and every joy is multiplied through shared moments - a key factor for 
+                    the stability of marriage. Just like the infinity, our bond is unbounded, growing and evolving with 
+                    each new day. Our journey has been nothing short of magical, and we couldn’t be more excited to take 
+                    the next step on this beautiful path, surrounded by those who mean the most :)
                 </p>
             </div>
             <div class="col-md-3 hidden-sm hidden-xs"><img src="img/sach1.jpg" class="wp2"></div>
@@ -154,6 +280,8 @@
     </div>
 </section>
 
+
+
 <section class="events section-padding" id="events">
     <div class="container">
         <div class="row">
@@ -161,59 +289,154 @@
                 <h3 class="header">Events</h3>
             </div>
         </div>
+        
         <div class="row">
-            <div class="col-md-6 col-sm-12 col-xs-12 leftcol">
-                <div class="wp3">
-                    <p><strong>17th February</strong></p>
-
-                    <h5>Lunch <span class="time">12PM - 5PM</span></h5>
-                    <p>It's one of the oldest traditional Indian pre wedding ceremony where the bride and groom
-                        attend the event together and a professional mehndi artist applies
-                        mehndi to the bride's hands and feet. This will be having a celebratory
-                        festival feel to it with people wearing vibrant clothes and dancing, singing, playing
-                        games and a lot more.</p>
+            <!-- Groom's Side -->
+            <div class="col-md-6 col-sm-12 groom-side">
+                <div class="groom-header">
+                    <h4 class="section-title">Groom's Side</h4>
                 </div>
-                <div class="wp5">
-                    <h5>Lagan Teeka <span class="time">2PM - 5PM</span></h5>
-                    <p>This event is no way close to ethnic. The bride & groom would like to have some "shots before the
-                        knot". With booze flowing down the floor and the western attire on, everyone would be busy
-                        showing off their new moves on the stage which they have finely honed. Lastly, expect some beer
-                        pong matches & karaoke for sure.</p>
+
+                <div class="event wp3">
+                    <p><strong>16th February</strong></p>
+                    <h5>Ladies Sangeet <span class="time">Evening</span></h5>
+                    <p>An exciting evening filled with music, dance, and celebration before the big day.</p>
+                </div>
+
+                <div class="event wp5">
+                    <p><strong>17th February</strong></p>
+                    <h5>Chak-Bhat <span class="time">Morning</span></h5>
+                    <p>A traditional ceremony to bring in blessings for the groom’s journey to marriage.</p>
+                </div>
+                <div class="event wp5">
+                    <h5>Lunch <span class="time">11:15AM Onwards</span></h5>
+                    <p>A hearty meal to energize the family for the upcoming celebrations. A true feast!</p>
+                </div>
+                <div class="event wp6">
+                    <h5>Lagan-Sagai <span class="time">Afternoon</span></h5>
+                    <p>A lovely pre-wedding ceremony where the groom’s side offers blessings for the couple.</p>
+                </div>
+                <div class="event wp6">
+                    <h5>Ghurchari + DJ Night <span class="time">Evening</span></h5>
+                    <p>Fun-filled night of dancing, music, and laughter as everyone celebrates the groom's journey!</p>
+                </div>
+
+                <div class="event wp6">
+                    <p><strong>18th February</strong></p>
+                    <h5>Ravanagi-e-Barat <span class="time">Morning</span></h5>
+                    <p>The groom’s family sets off in a grand procession to the bride’s side, filled with joy and celebration.</p>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-12 col-xs-12 rightcol">
-                <div class="wp4">
-                    <p><strong>18th February</strong></p>
 
-                    <h5>Haldi <span class="time">10AM-11AM</span></h5>
-                    <p>The haldi ceremony is usually held separately for the bride and the groom. This one is for the
-                        bride. It is a low-key event that involves the application of turmeric paste on the hands, legs
-                        and face of the bride. The groom is not allowed to see the bride after this ritual until the
-                        final wedding ceremony starts.</p>
+            <!-- Bride's Side -->
+            <div class="col-md-6 col-sm-12 bride-side">
+                <div class="bride-header">
+                    <h4 class="section-title">Bride's Side</h4>
                 </div>
-                <div class="wp6">
-                    <h5>Wedding <span class="time">6PM-12AM</span></h5>
-                    <p>This is the main event in the entire wedding when the bride and the groom tie the
-                        knot. The groom comes with the barat and is greeted by the bride side with some dhol of course
-                        as maximum number of guests would be attending this event. This is when the couple circle the
-                        sacred fire and are finally declared husband and wife.</p>
+
+                <div class="event wp3">
+                    <p><strong>17th February</strong></p>
+                    <h5>Mehndi <span class="time">Morning</span></h5>
+                    <p>A traditional ceremony where the bride gets her hands and feet adorned with beautiful mehndi.</p>
+                </div>
+                <div class="event wp4">
+                    <h5>Haldi <span class="time">Afternoon</span></h5>
+                    <p>The bride’s family applies turmeric to her face, hands, and feet to bless her for the wedding.</p>
+                </div>
+                <div class="event wp5">
+                    <h5>Sangeet + DJ Night + Dinner <span class="time">Evening</span></h5>
+                    <p>Celebration time! Music, dancing, and a great dinner as the bride's side prepares for the wedding.</p>
+                </div>
+
+                <div class="event wp6">
+                    <p><strong>18th February</strong></p>
+                    <h5>Chak-Bhat <span class="time">Afternoon</span></h5>
+                    <p>The bride’s family holds their own special ceremony before the big wedding day!</p>
+                </div>
+
+                <div class="event wp6">
+                    <h5>Swagat-e-Barat <span class="time">Evening</span></h5>
+                    <p>The groom’s procession arrives, and the bride’s side welcomes them with great enthusiasm!</p>
                 </div>
             </div>
         </div>
-        <!-- <div class="row section-padding">
-            <div class="col-md-4 col-md-offset-4 text-center">
-                <a class="btn btn-accent btn-small" data-toggle="modal" data-target="#dc-modal">
-                    <i class="fa fa-barcode"></i>&nbsp;&nbsp;Dress code
-                </a>
-            </div>
-        </div> -->
-        <!--<div class="row">
-            <div class="col-xs-12 section-border section-padding">
-            </div>
-        </div>-->
     </div>
 
+    <style>
+        /* Styling the sections */
+        .events .section-title {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .groom-side, .bride-side {
+            background-color: #f4f6f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+        }
+
+        /* Events styling */
+        .event {
+            margin-bottom: 25px;
+        }
+
+        .event h5 {
+            font-size: 1.2em;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .event .time {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+
+        .event p {
+            font-size: 1em;
+            color: #34495e;
+            line-height: 1.6;
+        }
+
+        /* Hover effects on event boxes */
+        .event:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        /* Ensuring the two columns appear side by side */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .col-md-6 {
+            flex: 0 0 48%;
+            max-width: 48%;
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            .groom-side, .bride-side {
+                margin-bottom: 20px;
+            }
+            .col-md-6 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            .event h5 {
+                font-size: 1em;
+            }
+        }
+    </style>
 </section>
+    
+
 
 <section id="instagram" class="section-padding">
     <div class="container">
@@ -226,12 +449,13 @@
             </div>
         </div>
         <div class="row section-border wp7">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-md-4 col-md-offset-4 justify-content-center">
                 <img src="img/insta.jpg">
             </div>
         </div>
     </div>
 </section>
+
 
 <section id="eng-pics" class="section-padding">
     <div class="container-fluid">
@@ -365,78 +589,125 @@
     </div>
 </section>
 
-<section class="rsvp text-center" id="rsvp">
 
-    <div id="rsvp-modal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
-                    </button>
-                    <div class="section-padding">
-                        <h3>Thank you!</h3>
-                        <p>We are glad to see you join us on our big day.</p>
-                        <div id="add-to-cal"></div>
-                    </div>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 
+<section class="wishes text-center" id="wishes" style="padding: 50px 0; background-color: #f8f9fa; text-align: center;">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <h3>What are you waiting for?</h3>
-                <p>We would greatly appreciate if you could RSVP</p>
-                <form id="rsvp-form" class="rsvp-form"
-                      action=""
-                      method="POST">
+            <div class="col-md-6 col-md-offset-3" style="position: relative;">
+                <!-- Shortened header -->
+                <h3 style="font-size: 2.2em; font-weight: bold; color: #2c3e50; margin-bottom: 20px;">Share Your Love & Wishes</h3>
+                <p style="font-size: 1.1em; color: #7f8c8d; margin-bottom: 40px;">Your words mean the world to us! Send your blessings as we begin this beautiful journey.</p>
+                
+                <form id="wishes-form" class="wishes-form" action="YOUR_GOOGLE_SCRIPT_URL" method="POST" onsubmit="showHeart(event)">
+                    <!-- Wishes input first -->
                     <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group">
-                                <i class="fa fa-envelope"></i><input type="email" name="email" class=""
-                                                                     placeholder="Your email"
-                                                                     required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group">
-                                <i class="fa fa-user"></i><input name="name" class=""
-                                                                 placeholder="Your name"
-                                                                 required>
+                        <div class="col-md-12">
+                            <div class="form-input-group" style="position: relative; margin-bottom: 25px;">
+                                <i class="fa fa-heart" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #e74c3c;"></i>
+                                <textarea name="wishes" class="form-control" placeholder="Your Heartfelt Wishes" rows="5" required
+                                          style="width: 100%; padding: 18px 20px; padding-left: 50px; border: 2px solid #ddd; border-radius: 30px; font-size: 1em; transition: all 0.3s ease; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);"></textarea>
                             </div>
                         </div>
                     </div>
+                    <!-- Name input second -->
                     <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group">
-                                <i class="fa fa-users"></i><input type="number" name="extras" class="" min="0"
-                                                                  max="4"
-                                                                  placeholder="Husband/Wife or kids"
-                                                                  required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group">
-                                <i class="fa fa-key"></i><input type="number" name="invite_code" id="invite_code"
-                                                                class="" min="0"
-                                                                placeholder="Invite code"
-                                                                required>
+                        <div class="col-md-12">
+                            <div class="form-input-group" style="position: relative; margin-bottom: 25px;">
+                                <i class="fa fa-user" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #7f8c8d;"></i>
+                                <input name="name" class="form-control" placeholder="Your Name" required 
+                                       style="width: 100%; padding: 18px 20px; padding-left: 50px; border: 2px solid #ddd; border-radius: 30px; font-size: 1em; transition: all 0.3s ease; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12" id="alert-wrapper"></div>
                     </div>
-                    <button class="btn-fill rsvp-btn">
-                        Yes,
-                        that's me!
+                    <button class="btn-fill wishes-btn" type="submit" style="cursor: pointer; font-size: 1.2em; padding: 18px 40px; background-color: #e74c3c; color: white; border: none; border-radius: 30px; transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        Submit Your Wishes
                     </button>
                 </form>
+
+                <!-- Heart Icon (hidden initially) -->
+                <div id="heart-popup" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4em; color: #e74c3c; animation: popHeart 1.5s ease-out;">
+                    <i class="fa fa-heart"></i>
+                </div>
             </div>
         </div>
     </div>
+
+    <style>
+        /* Style for form inputs */
+        .form-input-group input:focus,
+        .form-input-group textarea:focus {
+            border-color: #e74c3c;
+            outline: none;
+            box-shadow: 0 4px 8px rgba(231, 76, 60, 0.2);
+        }
+
+        /* Button hover effect */
+        .btn-fill.wishes-btn:hover {
+            background-color: #c0392b;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Heart animation */
+        @keyframes popHeart {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            70% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            #wishes h3 {
+                font-size: 1.8em;
+            }
+
+            .form-input-group input,
+            .form-input-group textarea {
+                font-size: 1.1em;
+            }
+
+            .btn-fill.wishes-btn {
+                font-size: 1.1em;
+                padding: 15px 30px;
+            }
+        }
+    </style>
+
+    <script>
+        // Function to show the heart animation on form submission
+        function showHeart(event) {
+            event.preventDefault(); // Prevent form from submitting immediately
+
+            // Show the heart popup
+            var heartPopup = document.getElementById('heart-popup');
+            heartPopup.style.display = 'block';
+
+            // Hide the heart popup after animation ends (1.5s)
+            setTimeout(function() {
+                heartPopup.style.display = 'none';
+            }, 1500);
+
+            // Submit the form after animation
+            event.target.submit();
+        }
+    </script>
 </section>
+
+<!--  -->
+<!--  -->
 
 <footer>
     <div class="container">
