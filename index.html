@@ -96,7 +96,6 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="hero-content text-center">
                     <!--<h1>Sachin and Jyoti</h1>-->
-                    <!-- <img src="img/logo-small.png"> -->
                     <!--<p class="intro">Sachin & Jyoti are getting hitched!</p>-->
                     <!--<a href="#" class="btn btn-fill btn-large btn-margin-right">Scroll Down</a> -->
                 </div>
@@ -619,7 +618,7 @@
                 <h3 style="font-size: 2.2em; font-weight: bold; color: #2c3e50; margin-bottom: 20px;">Share Your Love & Wishes</h3>
                 <p style="font-size: 1.1em; color: #7f8c8d; margin-bottom: 40px;">Your words mean the world to us! Send your blessings as we begin this beautiful journey.</p>
                 
-                <form id="wishes-form" class="wishes-form" action="https://script.google.com/macros/s/AKfycbxRAkAuXZS1fP567i6wHLC1gfIpo-l3J-o0iEWQ9zubjvJTZejTRAajz1d06495MCuVlg/exec" method="POST" onsubmit="showHeart(event)">
+                <form id="wishes-form" class="wishes-form" onsubmit="showHeart(event)">
                     <div class="form-input-group" style="position: relative; margin-bottom: 25px;">
                         <i class="fa fa-heart" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #e74c3c;"></i>
                         <textarea name="wishes" class="form-control" placeholder="Your Heartfelt Wishes" rows="5" required
@@ -638,6 +637,7 @@
                             style="cursor: pointer; font-size: 1.2em; padding: 18px 40px; background-color: #e74c3c; color: white; border: none; border-radius: 30px; transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                         Submit Your Wishes
                     </button>
+                    
                 </form>
 
                 <div id="heart-popup" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4em; color: #e74c3c; animation: popHeart 1.5s ease-out;">
@@ -707,61 +707,50 @@
 
     <script>
         function showHeart(event) {
-            event.preventDefault();
+            event.preventDefault(); // Prevent form from submitting immediately
             var heartPopup = document.getElementById('heart-popup');
             heartPopup.style.display = 'block';
             setTimeout(function() {
                 heartPopup.style.display = 'none';
-                event.target.submit();
-            }, 1500);
+                submitForm(event);
+            }, 1500); // Wait for heart animation to complete
         }
 
-        document.addEventListener("DOMContentLoaded", function () {
+        function submitForm(event) {
             const form = document.getElementById("wishes-form");
             const successMessage = document.getElementById("success-message");
             const alertWrapper = document.getElementById("alert-wrapper");
+            const submitButton = form.querySelector("button[type='submit']");
         
-            // Check if the user has already submitted (using localStorage)
-            if (localStorage.getItem("wishesSubmitted")) {
-                form.style.display = "none"; // Hide form
-                successMessage.style.display = "block"; // Show success message
-            }
+            submitButton.disabled = true; // Disable the submit button to prevent multiple clicks
         
-            form.addEventListener("submit", function (event) {
-                event.preventDefault(); // Prevent form from reloading
+            const formData = new FormData(form);
         
-                // Collect form data
-                const formData = new FormData(form);
+            // 🔴 Replace with your actual Google Apps Script Web App URL
+            const scriptURL = "https://script.google.com/macros/s/AKfycbx0DhPKbI3VkTV5yObngUIj0y8n6japBSe8FHVabYeRTjoEH3JHLnh0AuOZ_1gTgoMHrg/exec";
         
-                // Disable submit button to prevent multiple submissions
-                const submitButton = form.querySelector("button[type='submit']");
-                submitButton.disabled = true;
-                submitButton.innerText = "Submitting...";
-        
-                // Send the form data
-                fetch(form.action, {
-                    method: "POST",
-                    body: formData,
-                    mode: "no-cors" // Prevents CORS-related issues
-                })
-                .then(response => {
-                    // Since "no-cors" prevents reading the actual response, assume success
-                    form.style.display = "none";
-                    successMessage.style.display = "block";
-        
-                    // Store submission status in localStorage
-                    localStorage.setItem("wishesSubmitted", "true");
-        
-                    return { result: "success" }; // Fake response for confirmation
-                })
-                .catch(error => {
-                    alertWrapper.innerHTML = '<p style="color: red;">Network error! Please try again.</p>';
-                    submitButton.disabled = false;
-                    submitButton.innerText = "Submit Your Wishes";
-                    console.error("Form Submission Error:", error);
-                });
+            fetch(scriptURL, {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json()) // Convert response to JSON
+            .then(data => {
+                console.log("Response JSON:", data); // Log response to debug
+                if (data.result === "success") {
+                    form.style.display = "none"; // Hide the form
+                    successMessage.style.display = "block"; // Show success message
+                } else {
+                    alertWrapper.innerHTML = '<p style="color: red;">Oops! Something went wrong. Please try again.</p>';
+                }
+            })
+            .catch(error => {
+                console.error("Network error:", error); // Log network errors
+                alertWrapper.innerHTML = '<p style="color: red;">Network error! Please try again.</p>';
+            })
+            .finally(() => {
+                submitButton.disabled = false; // Re-enable the button
             });
-        });
+        }
         
     </script>
 </section>
