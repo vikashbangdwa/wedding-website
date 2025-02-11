@@ -720,51 +720,49 @@
             const form = document.getElementById("wishes-form");
             const successMessage = document.getElementById("success-message");
             const alertWrapper = document.getElementById("alert-wrapper");
-    
-            // Check if the user already submitted (using localStorage)
+        
+            // Check if the user has already submitted (using localStorage)
             if (localStorage.getItem("wishesSubmitted")) {
                 form.style.display = "none"; // Hide form
                 successMessage.style.display = "block"; // Show success message
             }
-    
+        
             form.addEventListener("submit", function (event) {
-                event.preventDefault(); // Prevent form from reloading the page
-    
+                event.preventDefault(); // Prevent form from reloading
+        
                 // Collect form data
                 const formData = new FormData(form);
-    
-                // Disable button to prevent multiple submissions
+        
+                // Disable submit button to prevent multiple submissions
                 const submitButton = form.querySelector("button[type='submit']");
                 submitButton.disabled = true;
                 submitButton.innerText = "Submitting...";
-    
-                // Send the form data to Google Sheets
+        
+                // Send the form data
                 fetch(form.action, {
                     method: "POST",
-                    body: formData
+                    body: formData,
+                    mode: "no-cors" // Prevents CORS-related issues
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.result === "success") {
-                        // Hide form and show success message
-                        form.style.display = "none";
-                        successMessage.style.display = "block";
-    
-                        // Store submission status in localStorage
-                        localStorage.setItem("wishesSubmitted", "true");
-                    } else {
-                        alertWrapper.innerHTML = '<p style="color: red;">Oops! Something went wrong. Please try again.</p>';
-                        submitButton.disabled = false;
-                        submitButton.innerText = "Submit Your Wishes";
-                    }
+                .then(response => {
+                    // Since "no-cors" prevents reading the actual response, assume success
+                    form.style.display = "none";
+                    successMessage.style.display = "block";
+        
+                    // Store submission status in localStorage
+                    localStorage.setItem("wishesSubmitted", "true");
+        
+                    return { result: "success" }; // Fake response for confirmation
                 })
                 .catch(error => {
                     alertWrapper.innerHTML = '<p style="color: red;">Network error! Please try again.</p>';
                     submitButton.disabled = false;
                     submitButton.innerText = "Submit Your Wishes";
+                    console.error("Form Submission Error:", error);
                 });
             });
         });
+        
     </script>
 </section>
 
